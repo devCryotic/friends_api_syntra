@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import express from "express";
 import mysql2 from "mysql2";
 import morgan from "morgan";
@@ -5,11 +6,22 @@ import * as url from "url";
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
+dotenv.config();
+
+// const db = mysql2.createPool({
+//   host: "localhost",
+//   user: "root",
+//   password: "root",
+//   database: "fe_01",
+//   timezone: "+02:00",
+//   dateStrings: "date",
+// });
+
 const db = mysql2.createPool({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "fe_01",
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
   timezone: "+02:00",
   dateStrings: "date",
 });
